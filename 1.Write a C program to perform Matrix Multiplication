@@ -8,7 +8,7 @@ int main()
     scanf("%d",&r);    
     printf("Enter the Number of Column: ");    
     scanf("%d",&c);    
-    printf("Enter the 1st Matrix Element=\n");    
+    printf("Enter the 1st Matrix Element: \n");    
     for(i=0;i<r;i++)    
     {    
         for(j=0;j<c;j++)    
