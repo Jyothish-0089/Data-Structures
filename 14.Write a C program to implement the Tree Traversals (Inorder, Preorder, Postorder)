@@ -1,54 +1,57 @@
-#include<stdio.h>
-#define n 5
-int main()
-{
-    int queue[n],ch=1,front=0,rear=0,i,j=1,x=n;
-    printf("Queue using Array");
-    printf("\n1.Insertion \n2.Deletion \n3.Display \n4.Exit");
-    while(ch)
-    {
-        printf("\nEnter the Choice:");
-        scanf("%d",&ch);
-        switch(ch)
-        {
-        case 1:
-            if(rear==x)
-                printf("\n Queue is Full");
-            else
-            {
-                printf("\n Enter no %d:",j++);
-                scanf("%d",&queue[rear++]);
-            }
-            break;
-        case 2:
-            if(front==rear)
-            {
-                printf("\n Queue is empty");
-            }
-            else
-            {
-                printf("\n Deleted Element is %d",queue[front++]);
-                x++;
-            }
-            break;
-        case 3:
-            printf("\nQueue Elements are:\n ");
-            if(front==rear)
-                printf("\n Queue is Empty");
-            else
-            {
-                for(i=front; i<rear; i++)
-                {
-                    printf("%d",queue[i]);
-                    printf("\n");
-                }
-                break;
-            case 4:
-
-            default:
-                printf("Wrong Choice: please see the options");
-            }
-        }
-    }
-    return 0;
+#include <stdio.h> 
+#include <stdlib.h> 
+struct node 
+{ 
+int data; 
+struct node* left; 
+struct node* right; 
+}; 
+struct node* newNode(int data) 
+{ 
+struct node* node = (struct node*) 
+malloc(sizeof(struct node)); 
+node->data = data; 
+node->left = NULL; 
+node->right = NULL; 
+return(node); 
+} 
+void printPostorder(struct node* node) 
+{ 
+if (node == NULL) 
+return; 
+printPostorder(node->left); 
+printPostorder(node->right); 
+printf("%d ", node->data); 
+} 
+void printInorder(struct node* node) 
+{ 
+if (node == NULL) 
+return; 
+printInorder(node->left); 
+printf("%d ", node->data);   
+printInorder(node->right); 
+} 
+void printPreorder(struct node* node) 
+{ 
+if (node == NULL) 
+return; 
+printf("%d ", node->data);   
+printPreorder(node->left);   
+printPreorder(node->right); 
+}  
+int main() 
+{ 
+struct node *root  = newNode(1); 
+root->left             = newNode(2); 
+root->right           = newNode(3); 
+root->left->left     = newNode(4); 
+root->left->right   = newNode(5);  
+printf("\nPreorder traversal of binary tree is \n"); 
+printPreorder(root); 
+printf("\nInorder traversal of binary tree is \n"); 
+printInorder(root);   
+printf("\nPostorder traversal of binary tree is \n"); 
+printPostorder(root); 
+getchar(); 
+return 0; 
 }
